@@ -3,11 +3,7 @@
 
     inputs = {
         nixpkgs.url = "nixpkgs/nixos-unstable";
-
-        flake-utils = {
-            url = "github:numtide/flake-utils";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+        flake-utils.url = "github:numtide/flake-utils";
     };
 
     outputs = inputs @ { self, nixpkgs, flake-utils, ... }:
