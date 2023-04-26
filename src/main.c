@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
     // Get destination path from env
 
-    char* static_wallpaper_path = getenv("STATIC_WALLPAPER_PATH");
+    char *static_wallpaper_path = getenv("STATIC_WALLPAPER_PATH");
     if (static_wallpaper_path == NULL) {
         fprintf(stderr, "Variable $STATIC_WALLPAPER_PATH is missing!\n");
         exit(1);
@@ -18,10 +18,10 @@ int main(int argc, char *argv[])
 
     // Get source path from args
 
-    char path[4096] = { 0 }; // Maximum path length
+    char path[4096] = ""; // Maximum path length
 
     for (int i = 1; i < argc; i++) {
-        strncat(path, argv[i], 4096);
+        strncat(path, argv[i], 4096 - 1);
     }
 
     // Get file size
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     GSettings *settings = g_settings_new("org.gnome.desktop.background");
     
     char picture_uri_path[4096] = "file://";
-    strcat(picture_uri_path, static_wallpaper_path);
+    strncat(picture_uri_path, static_wallpaper_path, 4096 - 8);
 
     g_settings_set_string(settings, "picture-uri", static_wallpaper_path);
     g_settings_set_string(settings, "picture-uri-dark", static_wallpaper_path);
