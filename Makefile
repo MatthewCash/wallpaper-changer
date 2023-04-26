@@ -1,9 +1,9 @@
-CC=g++
+CC=gcc
 
 LIBS=glib-2.0 gio-2.0
 
-DEBUG_CFLAGS=-Wextra -g -Og -std=gnu++17 $(shell pkg-config --cflags $(LIBS))
-RELEASE_CFLAGS=-Wextra -O2 -DNDEBUG -std=gnu++17 $(shell pkg-config --cflags $(LIBS))
+DEBUG_CFLAGS=-Wextra -g -Og $(shell pkg-config --cflags $(LIBS))
+RELEASE_CFLAGS=-Wextra -O2 -DNDEBUG $(shell pkg-config --cflags $(LIBS))
 LD_FLAGS=$(shell pkg-config --libs $(LIBS))
 
 SRC_DIR=src/
